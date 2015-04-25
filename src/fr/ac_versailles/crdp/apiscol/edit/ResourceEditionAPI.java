@@ -54,7 +54,6 @@ import fr.ac_versailles.crdp.apiscol.ParametersKeys;
 import fr.ac_versailles.crdp.apiscol.ResourcesKeySyntax;
 import fr.ac_versailles.crdp.apiscol.UsedNamespaces;
 import fr.ac_versailles.crdp.apiscol.edit.fileHandling.TransferRegistry;
-import fr.ac_versailles.crdp.apiscol.edit.filters.SecurityFilter;
 import fr.ac_versailles.crdp.apiscol.edit.sync.SyncAgent;
 import fr.ac_versailles.crdp.apiscol.edit.sync.SyncService;
 import fr.ac_versailles.crdp.apiscol.edit.sync.SyncService.SYNC_MODES;
@@ -148,23 +147,12 @@ public class ResourceEditionAPI extends ApiscolApi {
 		}
 		contentWebServiceResource = client.resource(UriBuilder.fromUri(
 				contentWebserviceUrl).build());
-		SecurityFilter securityFilter = new SecurityFilter();
-		securityFilter.addKey(contentWebserviceUrl.toString(),
-				contentWsSharedSecret);
-		securityFilter.addKey(metadataWebserviceUrl.toString(),
-				metaWsSharedSecret);
-		securityFilter.addKey(packWebserviceUrl.toString(), packWsSharedSecret);
 
-		contentWebServiceResource.addFilter(securityFilter);
-		packWebServiceResource.addFilter(securityFilter);
 		metadataWebServiceResource = client.resource(UriBuilder.fromUri(
 				metadataWebserviceUrl).build());
-		metadataWebServiceResource.addFilter(securityFilter);
 		thumbsWebServiceResource = client.resource(UriBuilder.fromUri(
 				thumbsWebserviceUrl).build());
-		securityFilter.addKey(thumbsWebserviceUrl.toString(),
-				thumbsWsSharedSecret);
-		thumbsWebServiceResource.addFilter(securityFilter);
+
 		transferRegistry = new TransferRegistry(fileRepoPath,
 				temporaryFilesPrefix, contentWebServiceResource);
 		urlParsingRegistry = new UrlParsingRegistry(contentWebServiceResource);
