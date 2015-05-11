@@ -86,10 +86,6 @@ public class ResourceEditionAPI extends ApiscolApi {
 	private static Client client;
 	private static String fileRepoPath;
 	private static String temporaryFilesPrefix;
-	private static String contentWsSharedSecret;
-	private static String metaWsSharedSecret;
-	private static String packWsSharedSecret;
-	private static String thumbsWsSharedSecret;
 
 	public ResourceEditionAPI(@Context HttpServletRequest request,
 			@Context ServletContext context) {
@@ -103,14 +99,6 @@ public class ResourceEditionAPI extends ApiscolApi {
 
 		fileRepoPath = getProperty(ParametersKeys.fileRepoPath, context);
 		temporaryFilesPrefix = getProperty(ParametersKeys.temporaryFilesPrefix,
-				context);
-		contentWsSharedSecret = getProperty(
-				ParametersKeys.contentWsSharedSecret, context);
-		metaWsSharedSecret = getProperty(ParametersKeys.metaWsSharedSecret,
-				context);
-		packWsSharedSecret = getProperty(ParametersKeys.packWsSharedSecret,
-				context);
-		thumbsWsSharedSecret = getProperty(ParametersKeys.thumbsWsSharedSecret,
 				context);
 		URI contentWebserviceUrl = null;
 		URI metadataWebserviceUrl = null;
